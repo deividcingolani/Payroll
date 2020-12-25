@@ -1,5 +1,5 @@
 import React, { Fragment, lazy, Suspense } from "react";
-import {payrolls,incomesDeductions } from "./data"
+import {payrolls,incomesDeductions } from "./utils/data"
 // Material UI
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
