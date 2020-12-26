@@ -1,19 +1,19 @@
-import Dialog from "@material-ui/core/Dialog";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import React, { Fragment, Suspense, useEffect } from "react";
-import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
-import TableContainer from "@material-ui/core/TableContainer";
-import Table from "@material-ui/core/Table";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import TableBody from "@material-ui/core/TableBody";
-import * as PropTypes from "prop-types";
-import { DeductionDialog, IncomeDialog } from "../../containers/LazyComponents";
-import { incomesDeductions } from "../../utils/data";
-import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import Dialog from '@material-ui/core/Dialog';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import React, { Fragment, Suspense, useEffect } from 'react';
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import TableContainer from '@material-ui/core/TableContainer';
+import Table from '@material-ui/core/Table';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
+import TableBody from '@material-ui/core/TableBody';
+import * as PropTypes from 'prop-types';
+import { DeductionDialog, IncomeDialog } from '../../containers/LazyComponents';
+import { incomesDeductions } from '../../utils/data';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 const IncomeDeductionDialog = ({
   onClose,
   open,
@@ -26,26 +26,26 @@ const IncomeDeductionDialog = ({
   const [openIncomeDialog, setOpenIncomeDialog] = React.useState(false);
   const [openDeductionDialog, setOpenDeductionDialog] = React.useState(false);
   const [initialIncomes, setInitialIncomes] = React.useState(
-    incomesDeductions[0]["Salary"]
+    incomesDeductions[0]['Salary']
   );
   const [initialDeductions, setInitialDeductions] = React.useState(
-    incomesDeductions[0]["Deduction"]
+    incomesDeductions[0]['Deduction']
   );
   const [selectedIncomes, setSelectedIncomes] = React.useState([]);
   const [selectedDeductions, setSelectedDeductions] = React.useState([]);
 
-  const AddIncome = (income) => {
+  const AddIncome = income => {
     const newSelectedIncome = [...selectedIncomes, income];
     setSelectedIncomes(newSelectedIncome);
     const newInitialIncome = initialIncomes.filter(
-      (initialIncome) => initialIncome.LineID !== income.LineID
+      initialIncome => initialIncome.LineID !== income.LineID
     );
     setInitialIncomes(newInitialIncome);
   };
 
-  const DeleteIncome = (income) => {
+  const DeleteIncome = income => {
     const filterSelectedIncomes = selectedIncomes.filter(
-      (incomeFilter) => income.Description !== incomeFilter.Description
+      incomeFilter => income.Description !== incomeFilter.Description
     );
     setSelectedIncomes(filterSelectedIncomes);
 
@@ -53,18 +53,18 @@ const IncomeDeductionDialog = ({
     setInitialIncomes(newInitialIncome);
   };
 
-  const AddDeduction = (deduction) => {
+  const AddDeduction = deduction => {
     const newSelectedDeduction = [...selectedDeductions, deduction];
     setSelectedDeductions(newSelectedDeduction);
     const newInitialDeduction = initialDeductions.filter(
-      (initialDeduction) => initialDeduction.LineID !== deduction.LineID
+      initialDeduction => initialDeduction.LineID !== deduction.LineID
     );
     setInitialDeductions(newInitialDeduction);
   };
 
-  const DeleteDeduction = (deduction) => {
+  const DeleteDeduction = deduction => {
     const filterSelectedDeduction = selectedDeductions.filter(
-      (deductionFilter) => deduction.Description !== deductionFilter.Description
+      deductionFilter => deduction.Description !== deductionFilter.Description
     );
     setSelectedDeductions(filterSelectedDeduction);
 
@@ -73,19 +73,19 @@ const IncomeDeductionDialog = ({
   };
   const handlerSave = () => {
     const sumGross = selectedIncomes.reduce(
-      (gross, income) => income.Amount + gross,
+      (gross, income) => parseInt(income.Amount) + gross,
       0
     );
     const sumNet = selectedDeductions.reduce(
-      (net, deduction) => deduction.Amount + net,
+      (net, deduction) => parseInt(deduction.Amount) + net,
       0
     );
 
     const payrollSelected = payrollsState.filter(
-      (payroll) => payroll.CompleteName === selectedDetails.CompleteName
+      payroll => payroll.CompleteName === selectedDetails.CompleteName
     );
     const payrolls = payrollsState.filter(
-      (payroll) => payroll.CompleteName !== selectedDetails.CompleteName
+      payroll => payroll.CompleteName !== selectedDetails.CompleteName
     );
     const newPayroll = {
       ...payrollSelected[0],
@@ -118,7 +118,8 @@ const IncomeDeductionDialog = ({
           open={openIncomeDialog}
           onClose={() => setOpenIncomeDialog(false)}
           listOptions={initialIncomes}
-          AddIncome={AddIncome}
+          AddItems={AddIncome}
+          name={'Income'}
         />
       </Suspense>
 
@@ -127,7 +128,8 @@ const IncomeDeductionDialog = ({
           open={openDeductionDialog}
           onClose={() => setOpenDeductionDialog(false)}
           listOptions={initialDeductions}
-          AddDeduction={AddDeduction}
+          AddItems={AddDeduction}
+          name={'Deduction'}
         />
       </Suspense>
 
@@ -137,7 +139,7 @@ const IncomeDeductionDialog = ({
           open && openDeductionDialog === false && openIncomeDialog === false
         }
         fullWidth={true}
-        maxWidth={"md"}
+        maxWidth={'md'}
       >
         <div>Income & Deduction</div>
         <div>
