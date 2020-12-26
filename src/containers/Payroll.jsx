@@ -37,8 +37,8 @@ const Payroll = () => {
       };
     });
     const PayrollSalaryList = [];
-    payrollsState.map((payroll) => {
-      payroll?.incomesDeductionsSelected?.selectedIncomes?.map(
+    payrollsState.forEach((payroll) => {
+      payroll?.incomesDeductionsSelected?.selectedIncomes?.forEach(
         (selectedIncome) => {
           PayrollSalaryList.push({
             DatacenterID: selectedIncome.DatacenterID,
@@ -52,8 +52,8 @@ const Payroll = () => {
     });
 
     const PayrollDeductionList = [];
-    payrollsState.map((payroll) => {
-      payroll?.incomesDeductionsSelected?.selectedDeductions?.map(
+    payrollsState.forEach((payroll) => {
+      payroll?.incomesDeductionsSelected?.selectedDeductions?.forEach(
         (selectedIncome) => {
           PayrollDeductionList.push({
             DatacenterID: selectedIncome.DatacenterID,
