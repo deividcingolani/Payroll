@@ -1,42 +1,42 @@
-import React, { Fragment, lazy, Suspense } from 'react';
-import { format } from 'date-fns';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import React, { Fragment, lazy, Suspense } from "react";
+import { format } from "date-fns";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
-} from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
-import TableContainer from '@material-ui/core/TableContainer';
-import Paper from '@material-ui/core/Paper';
-import Table from '@material-ui/core/Table';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import TableBody from '@material-ui/core/TableBody';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+} from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
+import TableContainer from "@material-ui/core/TableContainer";
+import Paper from "@material-ui/core/Paper";
+import Table from "@material-ui/core/Table";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@material-ui/core/TableCell";
+import TableBody from "@material-ui/core/TableBody";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
-const IncomeDeduction = lazy(() => import('./IncomeDeduction'));
+const IncomeDeduction = lazy(() => import("./IncomeDeduction"));
 
 const Payroll = () => {
   const payrolls = [
     {
       SubDeptID: 0,
-      SubDept: '',
+      SubDept: "",
       DatacenterID: 1,
-      DatacenterCode: '10001',
-      CompleteName: 'Robert Williams',
+      DatacenterCode: "10001",
+      CompleteName: "Robert Williams",
       Days: 0,
       Gross: 0,
       Net: 0,
     },
     {
       SubDeptID: 0,
-      SubDept: '',
+      SubDept: "",
       DatacenterID: 3,
-      DatacenterCode: '10003',
-      CompleteName: 'John Jones',
+      DatacenterCode: "10003",
+      CompleteName: "John Jones",
       Days: 0,
       Gross: 0,
       Net: 0,
@@ -47,45 +47,45 @@ const Payroll = () => {
       Salary: [
         {
           DatacenterID: 2012,
-          Description: 'Allowance',
+          Description: "Allowance",
           LineID: 14,
           Amount: 10000,
-          Remarks: '',
-          SettingsType: 'Salary',
+          Remarks: "",
+          SettingsType: "Salary",
         },
         {
           DatacenterID: 2012,
-          Description: 'Adjustment',
+          Description: "Adjustment",
           LineID: 15,
           Amount: 10000,
-          Remarks: '',
-          SettingsType: 'Salary',
+          Remarks: "",
+          SettingsType: "Salary",
         },
       ],
       Deduction: [
         {
           DatacenterID: 2012,
-          Description: 'SSS',
+          Description: "SSS",
           LineID: 13,
           Amount: 200,
-          Remarks: '',
-          SettingsType: 'Deduction',
+          Remarks: "",
+          SettingsType: "Deduction",
         },
         {
           DatacenterID: 2012,
-          Description: 'PAGIBIG',
+          Description: "PAGIBIG",
           LineID: 14,
           Amount: 200,
-          Remarks: '',
-          SettingsType: 'Deduction',
+          Remarks: "",
+          SettingsType: "Deduction",
         },
         {
           DatacenterID: 2012,
-          Description: 'HMO',
+          Description: "HMO",
           LineID: 15,
           Amount: 200,
-          Remarks: '',
-          SettingsType: 'Deduction',
+          Remarks: "",
+          SettingsType: "Deduction",
         },
       ],
     },
@@ -95,7 +95,7 @@ const Payroll = () => {
   );
   const [remarkValue, setRemarkValue] = React.useState(null);
   const [selectedDate, setSelectedDate] = React.useState(
-    format(new Date(), 'MM/dd/yyyy')
+    format(new Date(), "MM/dd/yyyy")
   );
   const [selectedDetails, setSelectedDetails] = React.useState(null);
   const [payrollsState, setPayrollsState] = React.useState(payrolls);
@@ -104,14 +104,14 @@ const Payroll = () => {
     setIncomesDeductionsSelected,
   ] = React.useState(null);
 
-  const IncomeDeductionDialog = payroll => {
+  const IncomeDeductionDialog = (payroll) => {
     setSelectedDetails({ ...payroll, incomesDeductions });
     setIncomeDeductionDialog(true);
     setIncomesDeductionsSelected(payroll.incomesDeductionsSelected);
   };
 
   const onSubmitHandler = () => {
-    const PayrollLineList = payrollsState.map(payroll => {
+    const PayrollLineList = payrollsState.map((payroll) => {
       return {
         DatacenterID: payroll.DatacenterID,
         DatacenterCode: payroll.DatacenterCode,
@@ -122,9 +122,9 @@ const Payroll = () => {
       };
     });
     const PayrollSalaryList = [];
-    payrollsState.forEach(payroll => {
+    payrollsState.forEach((payroll) => {
       payroll?.incomesDeductionsSelected?.selectedIncomes?.forEach(
-        selectedIncome => {
+        (selectedIncome) => {
           PayrollSalaryList.push({
             DatacenterID: selectedIncome.DatacenterID,
             DatacenterSalarySettingsLineID: selectedIncome.LineID,
@@ -137,9 +137,9 @@ const Payroll = () => {
     });
 
     const PayrollDeductionList = [];
-    payrollsState.forEach(payroll => {
+    payrollsState.forEach((payroll) => {
       payroll?.incomesDeductionsSelected?.selectedDeductions?.forEach(
-        selectedDeduction => {
+        (selectedDeduction) => {
           PayrollDeductionList.push({
             DatacenterID: selectedDeduction.DatacenterID,
             DatacenterSalaryDeductionLineID: selectedDeduction.LineID,
@@ -158,6 +158,7 @@ const Payroll = () => {
       PayrollDeductionList,
     });
   };
+
   return (
     <div>
       <Suspense fallback={<h3>Loading...</h3>}>
@@ -187,10 +188,10 @@ const Payroll = () => {
                 variant="outlined"
                 size="small"
                 style={{
-                  background: '#fff',
+                  background: "#fff",
                 }}
                 value={selectedDate}
-                onChange={val => {
+                onChange={(val) => {
                   setSelectedDate(val);
                 }}
               />
@@ -216,35 +217,27 @@ const Payroll = () => {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {payrollsState
-                        .sort((a, b) => {
-                          return a.CompleteName > b.CompleteName;
-                        })
-                        .map((payroll, index) => (
-                          <TableRow key={index}>
-                            <TableCell>{payroll.SubDept}</TableCell>
-                            <TableCell>{payroll.DatacenterCode}</TableCell>
-                            <TableCell>{payroll.CompleteName}</TableCell>
-                            <TableCell align="right">{payroll.Days}</TableCell>
-                            <TableCell
-                              align="right"
-                              data-cy="Gross"
-                              name="Gross"
+                      {payrollsState.map((payroll, index) => (
+                        <TableRow key={index}>
+                          <TableCell>{payroll.SubDept}</TableCell>
+                          <TableCell>{payroll.DatacenterCode}</TableCell>
+                          <TableCell>{payroll.CompleteName}</TableCell>
+                          <TableCell align="right">{payroll.Days}</TableCell>
+                          <TableCell align="right" data-cy="Gross" name="Gross">
+                            {payroll.Gross}
+                          </TableCell>
+                          <TableCell align="right">{payroll.Net}</TableCell>
+                          <TableCell>
+                            <Button
+                              color="primary"
+                              variant="contained"
+                              onClick={() => IncomeDeductionDialog(payroll)}
                             >
-                              {payroll.Gross}
-                            </TableCell>
-                            <TableCell align="right">{payroll.Net}</TableCell>
-                            <TableCell>
-                              <Button
-                                color="primary"
-                                variant="contained"
-                                onClick={() => IncomeDeductionDialog(payroll)}
-                              >
-                                View
-                              </Button>
-                            </TableCell>
-                          </TableRow>
-                        ))}
+                              View
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
                     </TableBody>
                     <TableBody>
                       <TableRow>
@@ -275,7 +268,7 @@ const Payroll = () => {
                     <Typography variant="body1">Remarks</Typography>
                     <TextField
                       defaultValue={remarkValue}
-                      onChange={e => setRemarkValue(e.target.value)}
+                      onChange={(e) => setRemarkValue(e.target.value)}
                     />
                   </Grid>
                 </Grid>
@@ -291,7 +284,7 @@ const Payroll = () => {
                 </Grid>
               </Fragment>
             ) : (
-              ''
+              ""
             )}
           </Grid>
         </Grid>
