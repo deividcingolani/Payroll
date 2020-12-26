@@ -54,13 +54,13 @@ const Payroll = () => {
     const PayrollDeductionList = [];
     payrollsState.forEach(payroll => {
       payroll?.incomesDeductionsSelected?.selectedDeductions?.forEach(
-        selectedIncome => {
+        selectedDeduction => {
           PayrollDeductionList.push({
-            DatacenterID: selectedIncome.DatacenterID,
-            DatacenterSalaryDeductionLineID: selectedIncome.LineID,
-            Description: selectedIncome.Description,
-            Remarks: selectedIncome.Remarks,
-            Amount: selectedIncome.Amount,
+            DatacenterID: selectedDeduction.DatacenterID,
+            DatacenterSalaryDeductionLineID: selectedDeduction.LineID,
+            Description: selectedDeduction.Description,
+            Remarks: selectedDeduction.Remarks,
+            Amount: selectedDeduction.Amount,
           });
         }
       );
