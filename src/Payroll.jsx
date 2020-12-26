@@ -98,7 +98,18 @@ const Payroll = () => {
     format(new Date(), "MM/dd/yyyy")
   );
   const [selectedDetails, setSelectedDetails] = React.useState(null);
-  const [payrollsState, setPayrollsState] = React.useState(payrolls);
+  const [payrollsState, setPayrollsState] = React.useState(
+    payrolls.sort((a, b) => {
+      const nameA = a.CompleteName.toUpperCase(); // ignore upper and lowercase
+      const nameB = b.CompleteName.toUpperCase(); // ignore upper and lowercase
+      if (nameA > nameB) {
+        return -1;
+      }
+      if (nameA < nameB) {
+        return 1;
+      }
+    })
+  );
   const [
     incomesDeductionsSelected,
     setIncomesDeductionsSelected,
