@@ -95,7 +95,7 @@ const ItemsDialog = ({ onClose, open, listOptions, AddItems, name }) => {
                 name="amount"
                 className={styles.field}
                 type={'text'}
-                renderInput={_ => <TextField label={'Amoun'} />}
+                renderInput={_ => <TextField label={'Amount'} />}
                 helperText={<ErrorMessage name={'amount'} />}
               />
               <div className={styles.buttons}>

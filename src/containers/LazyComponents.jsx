@@ -1,14 +1,14 @@
 // Lazy Load
-import { lazy } from "react";
+import { lazy } from 'react';
 
 export const IncomeDeduction = lazy(() =>
-  import("../components/IncomeDeductionDialog/IncomeDeductionDialog")
+  import('../components/IncomeDeductionDialog/IncomeDeductionDialog')
 );
 
 export const IncomeDialog = lazy(() =>
-  import("../components/IncomeDialog/IncomeDialog")
+  import('../components/DialogItems/DialogItems')
 );
 
 export const DeductionDialog = lazy(() =>
-  import("../components/DeductionDialog/DeductionDialog")
+  import('../components/DialogItems/DialogItems')
 );
