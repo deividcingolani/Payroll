@@ -1,7 +1,7 @@
 import Dialog from '@material-ui/core/Dialog';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import React, { Fragment, Suspense, useEffect } from 'react';
+import React, { Fragment, lazy, Suspense, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import TableContainer from '@material-ui/core/TableContainer';
@@ -11,10 +11,13 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TableBody from '@material-ui/core/TableBody';
 import * as PropTypes from 'prop-types';
-import { DeductionDialog, IncomeDialog } from '../../containers/LazyComponents';
-import { incomesDeductions } from '../../utils/data';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-const IncomeDeductionDialog = ({
+
+const IncomeDialog = lazy(() => import('./AddIncome'));
+
+const DeductionDialog = lazy(() => import('./AddDeduction'));
+
+const IncomeDeduction = ({
   onClose,
   open,
   selectedDetails,
@@ -22,6 +25,7 @@ const IncomeDeductionDialog = ({
   setPayrollsState,
   payrollsState,
   incomesDeductionsSelected,
+  incomesDeductions,
 }) => {
   const [openIncomeDialog, setOpenIncomeDialog] = React.useState(false);
   const [openDeductionDialog, setOpenDeductionDialog] = React.useState(false);
@@ -254,9 +258,9 @@ const IncomeDeductionDialog = ({
   );
 };
 
-IncomeDeductionDialog.propTypes = {
+IncomeDeduction.propTypes = {
   onClose: PropTypes.any,
   open: PropTypes.any,
   completeName: PropTypes.any,
 };
-export default IncomeDeductionDialog;
+export default IncomeDeduction;

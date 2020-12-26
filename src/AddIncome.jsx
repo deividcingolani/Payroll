@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ItemsDialog = ({ onClose, open, listOptions, AddItems, name }) => {
+const AddIncome = ({ onClose, open, listOptions, AddItems, name }) => {
   const styles = useStyles();
   const initialValues = {
     optionSelected: '',
@@ -125,4 +125,4 @@ const ItemsDialog = ({ onClose, open, listOptions, AddItems, name }) => {
   );
 };
 
-export default ItemsDialog;
+export default AddIncome;
