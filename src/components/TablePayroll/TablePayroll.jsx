@@ -78,7 +78,9 @@ export const TablePayroll = ({
                           <TableCell>{payroll.DatacenterCode}</TableCell>
                           <TableCell>{payroll.CompleteName}</TableCell>
                           <TableCell align="right">{payroll.Days}</TableCell>
-                          <TableCell align="right">{payroll.Gross}</TableCell>
+                          <TableCell align="right" data-cy="Gross" name="Gross">
+                            {payroll.Gross}
+                          </TableCell>
                           <TableCell align="right">{payroll.Net}</TableCell>
                           <TableCell>
                             <Button
