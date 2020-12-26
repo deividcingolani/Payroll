@@ -1,16 +1,16 @@
-import React, { Suspense } from "react";
-import { incomesDeductions } from "../utils/data";
-import { TablePayroll } from "../components";
-import { IncomeDeduction } from "./LazyComponents";
-import { payrolls } from "../utils/data";
-import { format } from "date-fns";
+import React, { Suspense } from 'react';
+import { incomesDeductions } from '../utils/data';
+import { TablePayroll } from '../components';
+import { IncomeDeduction } from './LazyComponents';
+import { payrolls } from '../utils/data';
+import { format } from 'date-fns';
 const Payroll = () => {
   const [openIncomeDeductionDialog, setIncomeDeductionDialog] = React.useState(
     false
   );
   const [remarkValue, setRemarkValue] = React.useState(null);
   const [selectedDate, setSelectedDate] = React.useState(
-    format(new Date(), "MM/dd/yyyy")
+    format(new Date(), 'MM/dd/yyyy')
   );
   const [selectedDetails, setSelectedDetails] = React.useState(null);
   const [payrollsState, setPayrollsState] = React.useState(payrolls);
@@ -19,14 +19,14 @@ const Payroll = () => {
     setIncomesDeductionsSelected,
   ] = React.useState(null);
 
-  const IncomeDeductionDialog = (payroll) => {
+  const IncomeDeductionDialog = payroll => {
     setSelectedDetails({ ...payroll, incomesDeductions });
     setIncomeDeductionDialog(true);
     setIncomesDeductionsSelected(payroll.incomesDeductionsSelected);
   };
 
   const onSubmitHandler = () => {
-    const PayrollLineList = payrollsState.map((payroll) => {
+    const PayrollLineList = payrollsState.map(payroll => {
       return {
         DatacenterID: payroll.DatacenterID,
         DatacenterCode: payroll.DatacenterCode,
@@ -37,9 +37,9 @@ const Payroll = () => {
       };
     });
     const PayrollSalaryList = [];
-    payrollsState.forEach((payroll) => {
+    payrollsState.forEach(payroll => {
       payroll?.incomesDeductionsSelected?.selectedIncomes?.forEach(
-        (selectedIncome) => {
+        selectedIncome => {
           PayrollSalaryList.push({
             DatacenterID: selectedIncome.DatacenterID,
             DatacenterSalarySettingsLineID: selectedIncome.LineID,
@@ -52,12 +52,12 @@ const Payroll = () => {
     });
 
     const PayrollDeductionList = [];
-    payrollsState.forEach((payroll) => {
+    payrollsState.forEach(payroll => {
       payroll?.incomesDeductionsSelected?.selectedDeductions?.forEach(
-        (selectedIncome) => {
+        selectedIncome => {
           PayrollDeductionList.push({
             DatacenterID: selectedIncome.DatacenterID,
-            DatacenterSalarySettingsLineID: selectedIncome.LineID,
+            DatacenterSalaryDeductionLineID: selectedIncome.LineID,
             Description: selectedIncome.Description,
             Remarks: selectedIncome.Remarks,
             Amount: selectedIncome.Amount,
