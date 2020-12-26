@@ -7,11 +7,11 @@ https://morning-hamlet-98801.herokuapp.com/
 
 2) Install Dependencies
 
-  yarn install
+  yarn install /
   npm install 
 
 
 3) Start Local
 
-  yarn start
+  yarn start /
   npm start
