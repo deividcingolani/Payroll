@@ -5,7 +5,7 @@ https://morning-hamlet-98801.herokuapp.com/
 1) Clone the repo in your local
 
 
-2)Install Dependencies
+2) Install Dependencies
 
   yarn install
   npm install 
